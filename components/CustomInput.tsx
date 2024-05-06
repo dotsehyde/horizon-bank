@@ -6,9 +6,7 @@ const CustomInput = ({
   form,
   name,
   title,
-  isPass = false,
-  isEmail = false,
-  isRequired = false,
+  type = "text",
   placeholder,
 }: CustomInputProps) => {
   return (
@@ -21,8 +19,7 @@ const CustomInput = ({
           <div className="flex w-full">
             <FormControl>
               <Input
-                required={isRequired}
-                type={isEmail ? "email" : isPass ? "password" : "text"}
+                type={type}
                 {...field}
                 placeholder={placeholder}
                 className="input-class"
@@ -40,8 +37,7 @@ export default CustomInput;
 
 interface CustomInputProps {
   form: any;
-  isEmail?: boolean;
-  isRequired?: boolean;
+  type?: string;
   name: string;
   isPass?: boolean;
   title: string;
