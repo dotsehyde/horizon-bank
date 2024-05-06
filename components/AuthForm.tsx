@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,7 +33,6 @@ const formSchema = (type: string) =>
 
 const AuthForm = ({ type }: { type: string }) => {
   const [user, setUser] = useState(null);
-
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   // 1. Define your form.
@@ -69,9 +68,7 @@ const AuthForm = ({ type }: { type: string }) => {
           email: data.email,
           password: data.password,
         });
-        // if (res) {
-        //   router.push("/");
-        // }
+        if (res) return router.push("/");
       }
     } catch (error) {
       console.error(error);
@@ -153,7 +150,7 @@ const AuthForm = ({ type }: { type: string }) => {
                       form={form}
                       name="dateOfBirth"
                       title="Date of birth"
-                      placeholder="YYY-MM-DD"
+                      placeholder="YYYY-MM-DD"
                     />
                     <CustomInput
                       form={form}
